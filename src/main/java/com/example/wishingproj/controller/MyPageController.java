@@ -35,7 +35,6 @@ public class MyPageController {
   public String createWish(WebRequest wishpayload, Model model) {
     wishService.create(wishpayload);
     model.addAttribute("email", wishpayload.getParameter("email"));
-
     return "mypage";
   }
 
