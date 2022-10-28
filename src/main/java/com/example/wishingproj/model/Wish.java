@@ -38,5 +38,13 @@ public class Wish {
   public void setEmail(String email) {
     this.email = email;
   }
+
+  @Override
+  public String toString() {
+    return "Wish{" +
+        "description='" + description + '\'' +
+        ", email='" + email + '\'' +
+        '}';
+  }
 }
 

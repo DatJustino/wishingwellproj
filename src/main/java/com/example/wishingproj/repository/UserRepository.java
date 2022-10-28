@@ -13,8 +13,42 @@ public class UserRepository {
     Connection conn = DatabaseConnectionManager.getConnection();
 
 
-    public List<User> getAllUsers(){
+  public boolean emailVerification(String email) {
 
+    try {
+      PreparedStatement psts = conn.prepareStatement("SELECT * from wishing_well.users where email=? and password=?");
+      psts.setString(1, email);
+      ResultSet resultset = psts.executeQuery();
+      if(resultset.next()){
+        return true;
+      } else return false;
+
+    } catch (SQLException e) {
+      System.out.println("duplicate entry");
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public boolean passwordVerification(String password) {
+
+    try {
+      PreparedStatement psts = conn.prepareStatement("SELECT * from wishing_well.users where email=? and password=?");
+      psts.setString(1, email);
+      psts.setString(2, password);
+      ResultSet resultset = psts.executeQuery();
+      if(resultset.next()){
+        return true;
+      } else return false;
+
+    } catch (SQLException e) {
+      System.out.println("duplicate entry");
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  /* public List<User> getAllUsers(){
       try {
         PreparedStatement pst =  conn.prepareStatement("select * from wishing_well.users"); {
           ResultSet resultset = pst.executeQuery();
@@ -31,17 +65,15 @@ public class UserRepository {
       }
       return users;
     }
-
+*/
     public User getUser(String email){
       try { //join wishing_well.wishing_list on users.email = wishing_list.email
         PreparedStatement pst =  conn.prepareStatement("select * from wishing_well.users where users.email=?"); {
           pst.setString(1, email);
           ResultSet resultset = pst.executeQuery();
-          System.out.println(resultset.toString());
 
           if (resultset.next()) {
             User user = new User(
-                resultset.getInt("id"),
                 resultset.getString("email"),
                 resultset.getString("name"));
           }
@@ -68,17 +100,18 @@ public class UserRepository {
       return null;
     }
     public void create(User user) {
+
       try {
-        PreparedStatement psts = conn.prepareStatement("INSERT INTO wishing_well.users (email, name) VALUES (?,?)");
-        psts.setString(1, user.getEmail());
-        psts.setString(2, user.getName());
-        psts.executeUpdate();
+          PreparedStatement psts = conn.prepareStatement("INSERT INTO wishing_well.users (email, name, password) VALUES (?,?,?)");
+          psts.setString(1, user.getEmail());
+          psts.setString(2, user.getPassword());
+          psts.setString(3, user.getName());
+          psts.executeUpdate();
 
       } catch (SQLException e) {
+        System.out.println("duplicate entry");
         throw new RuntimeException(e);
       }
-
     }
-
   }
 

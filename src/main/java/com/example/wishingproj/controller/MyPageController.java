@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.ArrayList;
+
 
 @Controller
 public class MyPageController {
@@ -27,7 +29,6 @@ public class MyPageController {
   public String createUser(WebRequest loginpayload, Model model) {
     model.addAttribute("email", loginpayload.getParameter("email"));
     userService.create(loginpayload);
-
     return "mypage";
   }
 
@@ -35,6 +36,8 @@ public class MyPageController {
   public String createWish(WebRequest wishpayload, Model model) {
     wishService.create(wishpayload);
     model.addAttribute("email", wishpayload.getParameter("email"));
+    wishService.getAllWishesFromUser(wishpayload, model);
+
     return "mypage";
   }
 

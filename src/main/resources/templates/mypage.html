@@ -14,5 +14,21 @@
     <button type="submit">Submit</button>
 </form>
 
+<h2> My wishes </h2>
+
+<p th:text="${name}"></p>
+
+<table>
+    <tr th:each="wish : ${wishList}">
+        <td th:text="${wish}"></td>
+    </tr>
+</table>
+
+
+<form action="/" method="get">
+    <button type="submit"> HOME</button>
+</form>
+
+
 </body>
 </html>

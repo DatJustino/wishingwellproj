@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 @Controller
 public class HomeController {
@@ -24,28 +25,27 @@ public class HomeController {
       return "index";
     }
 
-  @GetMapping("/login")
-  public String Login(){
-    return "login";
-  }
 
-  @PostMapping("/login")
-  public String getUser(WebRequest userpayload, Model model) {
-    userService.create(userpayload);
-    model.addAttribute("email", userpayload.getParameter("email"));
-    //første email er variabelnavn og andet email er email fra html formen
-    //den her model skal være der, da det er den, der sætter email ind i hidden form
-    //til brug i wishing_lidt. Uden den kommer email ikke ind i wishing_list
-    return "mypage";
-  }
+    @GetMapping("/login")
+    public String Login(){
+      return "login";
+    }
 
+    @PostMapping("/login")
+    public String getWishes(WebRequest userpayload, Model model) {
+      //if userexists get wishes
+      // else if user doesnt exist, return to indexpage with error message user doesnt exist.
 
-
-
-
-
-
-
+      model.addAttribute("email", userpayload.getParameter("email"));
+      boolean hasEmail;
+      hasEmail = wishService.getAllWishesFromUser(userpayload, model);
+      if (hasEmail){
+        return "mypage";
+      } else return "index";
+      //første email er variabelnavn og andet email er email fra html formen
+      //den her model skal være der, da det er den, der sætter email ind i hidden form
+      //til brug i wishing_lidt. Uden den kommer email ikke ind i wishing_list
+    }
 
   //--skal ikke bruges endnu--
   @GetMapping("/omos")
@@ -53,15 +53,13 @@ public class HomeController {
     return "omos";
   }
 
-
-  @GetMapping("/userrepo")
+ /* @GetMapping("/userrepo")
   public List<User> userRepo() {
     return userService.getAllUsers();
-  }
+  }*/
 
-    @GetMapping("/wishrepo")
+   /* @GetMapping("/wishrepo")
     public List<Wish> wishRepo() {
       return wishService.getAllWishes();
-
-    }
+    }*/
   }
