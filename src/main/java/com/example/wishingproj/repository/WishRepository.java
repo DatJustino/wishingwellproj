@@ -38,7 +38,6 @@ public class WishRepository {
     List<Wish> wishes = new ArrayList<>();
 
     try {
-
       PreparedStatement pst =  conn.prepareStatement("select * from wishing_well.wishing_list where email=?"); {
         pst.setString(1, email);
         ResultSet resultset = pst.executeQuery();

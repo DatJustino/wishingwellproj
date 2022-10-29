@@ -14,9 +14,8 @@ public class UserRepository {
 
 
   public boolean emailVerification(String email) {
-
     try {
-      PreparedStatement psts = conn.prepareStatement("SELECT * from wishing_well.users where email=? and password=?");
+      PreparedStatement psts = conn.prepareStatement("SELECT * from wishing_well.users where email=?");
       psts.setString(1, email);
       ResultSet resultset = psts.executeQuery();
       if(resultset.next()){
@@ -30,7 +29,7 @@ public class UserRepository {
   }
 
 
-  public boolean passwordVerification(String password) {
+  public boolean passwordVerification(String email, String password) {
 
     try {
       PreparedStatement psts = conn.prepareStatement("SELECT * from wishing_well.users where email=? and password=?");
@@ -42,7 +41,7 @@ public class UserRepository {
       } else return false;
 
     } catch (SQLException e) {
-      System.out.println("duplicate entry");
+      System.out.println("wrong password!");
       throw new RuntimeException(e);
     }
   }

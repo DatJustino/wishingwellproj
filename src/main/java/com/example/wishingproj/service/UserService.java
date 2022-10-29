@@ -4,6 +4,7 @@ import com.example.wishingproj.model.User;
 import com.example.wishingproj.repository.DatabaseConnectionManager;
 import com.example.wishingproj.repository.UserRepository;
 import org.springframework.web.context.request.WebRequest;
+
 import java.sql.Connection;
 
 public class UserService {
@@ -24,7 +25,10 @@ public class UserService {
 
   public void create(WebRequest userpayload) {
     boolean hasEmail;
-    hasEmail = userRepository.emailVerification(userpayload.getParameter("email"), userpayload.getParameter("password"));
+    boolean hasPassword;
+
+    hasEmail = userRepository.emailVerification(userpayload.getParameter("email"));
+    hasPassword = userRepository.passwordVerification("email", "password");
     if (hasEmail == false) {
       User user = new User(
           userpayload.getParameter("email"),
@@ -32,13 +36,17 @@ public class UserService {
           userpayload.getParameter("name")
       );
       userRepository.create(user);
-    } else {
+    } else // if has password
+      hasPassword = userRepository.passwordVerification("email","password");
+      if (hasPassword == false) {
+        System.out.println("wrong password");
+      } else
+
       System.out.println("har allerede bruger");
     }
   }
 
 
-}
 
 
 

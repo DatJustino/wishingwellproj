@@ -38,7 +38,9 @@ public class HomeController {
 
       model.addAttribute("email", userpayload.getParameter("email"));
       boolean hasEmail;
+      boolean password;
       hasEmail = wishService.getAllWishesFromUser(userpayload, model);
+      password = userService.create();
       if (hasEmail){
         return "mypage";
       } else return "index";
