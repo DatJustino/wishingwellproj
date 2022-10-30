@@ -1,0 +1,54 @@
+*, html {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body {
+    margin: 0px;
+}
+.midter-div {
+    margin: 0% 10% 0% 10%;
+    background-color: rgba(255,10,10,0.2);
+}
+header {
+    background-color: rgba(255,10,10,0.2);
+}
+#flex-header{
+    display: flex;
+    position: center;
+}
+#flex-header > div{
+    border: 1px solid black;
+    flex: 1;
+}
+#smal-midterdiv {
+    margin: 2% 30% 0% 30%;
+    background-color: rgba(255,10,10,0.2);
+}
+#login-div {
+    text-align: center;
+    border: 1px solid black;
+}
+
+footer {
+
+}
+
+h1{
+
+}
+
+h2{
+
+}
+
+p{
+
+}

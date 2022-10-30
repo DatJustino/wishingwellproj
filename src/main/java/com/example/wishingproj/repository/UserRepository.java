@@ -101,7 +101,7 @@ public class UserRepository {
     public void create(User user) {
 
       try {
-          PreparedStatement psts = conn.prepareStatement("INSERT INTO wishing_well.users (email, name, password) VALUES (?,?,?)");
+          PreparedStatement psts = conn.prepareStatement("INSERT INTO wishing_well.users (email, password, name) VALUES (?,?,?)");
           psts.setString(1, user.getEmail());
           psts.setString(2, user.getPassword());
           psts.setString(3, user.getName());

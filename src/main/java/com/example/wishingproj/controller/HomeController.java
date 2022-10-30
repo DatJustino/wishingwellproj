@@ -40,7 +40,7 @@ public class HomeController {
       boolean hasEmail;
       boolean password;
       hasEmail = wishService.getAllWishesFromUser(userpayload, model);
-      password = userService.create();
+    //  password = userService.create();
       if (hasEmail){
         return "mypage";
       } else return "index";
