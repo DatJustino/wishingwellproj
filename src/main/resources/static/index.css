@@ -71,4 +71,10 @@ footer{
     padding: 10px;
     margin: 2px;
 }
+ tr {
+    display: block; float: left;
+}
+th, td {
+    display: block;
+}
 

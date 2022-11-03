@@ -62,7 +62,6 @@ public class WishRepository {
 
           descriptions.add(w.getDescription());
           model.addAttribute("descriptionList", descriptions);
-
         }
 
         //sout terminal

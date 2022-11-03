@@ -1,7 +1,7 @@
 package com.example.wishingproj.controller;
 
-import com.example.wishingproj.repository.UserRepository;
-import com.example.wishingproj.repository.WishRepository;
+import com.example.wishingproj.repository.ControllerGenerator;
+import com.example.wishingproj.repository.HTMLGenerator;
 import com.example.wishingproj.service.UserService;
 import com.example.wishingproj.service.WishService;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
-import java.util.ArrayList;
 
 
 @Controller
@@ -17,7 +16,8 @@ public class MyPageController {
 
   WishService wishService = new WishService();
   UserService userService = new UserService();
-
+  ControllerGenerator controllerGenerator = new ControllerGenerator();
+  HTMLGenerator htmlGenerator = new HTMLGenerator();
 
   @GetMapping("/mypage")
   public String myPage(){
@@ -28,6 +28,9 @@ public class MyPageController {
   public String createUser(WebRequest loginpayload, Model model) {
     model.addAttribute("email", loginpayload.getParameter("email"));
     userService.create(loginpayload);
+    controllerGenerator.createController(loginpayload.getParameter("email"));
+    htmlGenerator.GenerateFile(loginpayload.getParameter("email"));
+
     return "mypage";
   }
 
