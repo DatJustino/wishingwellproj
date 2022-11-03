@@ -14,7 +14,7 @@ body {
     margin: 0px;
 }ul {
      list-style-type: none;
-     margin: 0 10% 0 10%;
+     margin: 0 5% 0 5%;
      padding: 0;
      overflow: hidden;
      background-size: cover;
@@ -38,15 +38,30 @@ h1 {
     text-align: center;
 }
 .midter-div {
-    margin: 0 10% 0 10%;
+    margin: 0 5% 0 5%;
 }
 #smal-midterdiv {
-    margin: 0 30% 0 30%;
+    margin: 0 20% 0 20%;
+    padding: 4%;
 }
 
 #login-div {
     text-align: center;
     border: 1px solid black;
+}
+
+input {
+    border-radius: 15px;
+    background-color: white;
+    padding: 1%;
+    border: 2px solid antiquewhite;
+
+}
+button {
+    border-radius: 9px;
+    font-weight: bold;
+    border: 2px solid antiquewhite;
+    color: maroon;
 }
 
 .pink {
@@ -62,7 +77,7 @@ footer{
     left: 0;
     height: 100px;
     overflow: auto;
-    margin: 0 10% 0 10%;
+    margin: 0 5% 0 5%;
 }
 
 .footer-text{
@@ -71,10 +86,11 @@ footer{
     padding: 10px;
     margin: 2px;
 }
- tr {
-    display: block; float: left;
+.tdsize {
+    padding: 4px;
 }
-th, td {
-    display: block;
-}
+.deletesize {
+    padding: 3px;
 
+
+}
