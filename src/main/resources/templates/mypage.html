@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <title>mypage</title>
+</head>
+<body>
+<nav><ul class="morepink">
+    <li><a href="/"title="refresh the page?">Main Menu</a></li>
+    <li><a href="PLACEHOLDER"title="PLACEHOLDER">Inspiration</a></li>
+    <li><a href="PLACEHOLDER"title="PLACEHOLDER">Om os</a></li>
+    <li style="float: right"><a href="/"title="You think this wise boy?">Logout</a></li>
+
+</ul></nav>
+
+
+<div class="midter-div pink">
+    <div id="smal-midterdiv" class="pink">
+        <h1> Create Wish </h1>
+        <br><br>
+<form action="/createwish" method="post">
+    <input type="text" name="description" placeholder="Enter wish" maxlength="100" size="50" required ><br>
+    <input type="hidden" name="email" th:value="${email}"><br>
+    <button type="submit">Submit</button>
+</form>
+
+        <br><br>
+        <p>URL for sharing wish list</p>
+        <p th:text="${URLsharing}"></p>
+        <br><br>
+
+<h2> My wishes </h2>
+        <table style="float:left">
+            <tr  th:each="id : ${idList}">
+                <td style="display:none" th:text="${id}">
+                <td class="deletesize   ">
+                    <form action="/deletewish" method="post">
+                        <input type="hidden" name="email" th:value="${email}">
+                        <input type="hidden" name="wish_id" th:value="${id}">
+                        <button type="submit"> Delete </button>
+                    </form>
+                </td>
+                </td>
+            </tr>
+        </table>
+
+        <table  >
+            <tr  th:each="description : ${descriptionList}">
+                <td class="tdsize" th:text="${description}"> </td>
+            </tr>
+        </table>
+       <br><br><br>
+
+
+</div>
+</div>
+
+<footer class="morepink">
+
+    <p class="footer-text">
+        Wishing Well DK<br>
+        Overgaden Oven Vandet 44, 1415 København<br>
+        wishinwell@justino.dk <br>
+        33123456
+    </p>
+</footer>
+</body>
+</html>

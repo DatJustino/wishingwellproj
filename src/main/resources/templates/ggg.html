@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta name="description" content="Wishing-list website">
+    <meta name="keywords" content="wishing, share wishes, friends and family">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author"content="I. Justino, Veronica Bistrup Frydkjær">
+    <meta http-equiv="refresh" content="1200">
+</head>
+<body>
+<nav><ul class="morepink">
+    <li><a href="/"title="refresh the page?">Main Menu</a></li>
+    <li><a href="PLACEHOLDER"title="PLACEHOLDER">Inspiration</a></li>
+    <li><a href="PLACEHOLDER"title="PLACEHOLDER">Om os</a></li>
+   
+
+</ul></nav>
+
+
+<div class="midter-div pink">
+    <div id="smal-midterdiv" class="pink">
+   
+
+        <br><br><br>
+<h2> My wishes </h2>
+        <table style="float:left">
+            <tr  th:each="id : ${idList}">
+                <td style="display:none" th:text="${id}">
+                </td>
+            </tr>
+        </table>
+
+        <table  >
+            <tr  th:each="description : ${descriptionList}">
+                <td class="tdsize" th:text="${description}"> </td>
+            </tr>
+        </table>
+
+       <br><br><br>
+
+<form action="/ggg" method="post">
+ <input type="hidden" name="email" value="ggg@ggg.dk">
+ <button type="submit"> getwishes! </button>
+</form>
+
+
+</div>
+</div>
+
+<footer class="morepink">
+    <p class="footer-text">
+        Wishing Well DK<br>
+        Overgaden Oven Vandet 44, 1415 København<br>
+        wishinwell@justino.dk <br>
+        33123456
+    </p>
+</footer>
+</body>
+</html>

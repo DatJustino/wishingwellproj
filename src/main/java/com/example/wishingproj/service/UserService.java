@@ -3,6 +3,7 @@ package com.example.wishingproj.service;
 import com.example.wishingproj.model.User;
 import com.example.wishingproj.repository.DatabaseConnectionManager;
 import com.example.wishingproj.repository.UserRepository;
+import org.springframework.ui.Model;
 import org.springframework.web.context.request.WebRequest;
 
 import java.sql.Connection;
@@ -44,6 +45,18 @@ public class UserService {
 
       System.out.println("har allerede bruger");
     }
+
+    public void createURL(WebRequest userpayload, Model model){
+      String newmail = userpayload.getParameter("email");
+      String URLmail = newmail.substring(0, newmail.indexOf("@"))
+          .replace(".","")
+          .replace("_","")
+          .replace("-","")
+          .trim();
+      URLmail = "http://localhost:8080/" + URLmail;
+      model.addAttribute("URLsharing", URLmail);
+    }
+
   }
 
 

@@ -27,6 +27,7 @@ public class MyPageController {
   @PostMapping("/mypage")
   public String createUser(WebRequest loginpayload, Model model) {
     model.addAttribute("email", loginpayload.getParameter("email"));
+
     userService.create(loginpayload);
     controllerGenerator.createController(loginpayload.getParameter("email"));
     htmlGenerator.GenerateFile(loginpayload.getParameter("email"));
@@ -40,6 +41,7 @@ public class MyPageController {
     // else if user doesnt exist, return to indexpage with error message user doesnt exist.
 
     model.addAttribute("email", userpayload.getParameter("email"));
+    userService.createURL(userpayload, model);
 
     boolean hasEmail;
     boolean password;

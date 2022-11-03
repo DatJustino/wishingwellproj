@@ -9,37 +9,38 @@
     <meta name="author"content="I. Justino, Veronica Bistrup Frydkjær">
     <meta http-equiv="refresh" content="1200">
 </head>
-
+<body>
 <nav><ul class="morepink">
     <li><a href="/"title="refresh the page?">Main Menu</a></li>
+    <li><a href="PLACEHOLDER"title="PLACEHOLDER">Inspiration</a></li>
     <li><a href="PLACEHOLDER"title="PLACEHOLDER">Om Wishing Well</a></li>
-    <li><a href="PLACEHOLDER"title="PLACEHOLDER">PlaceHolder</a></li>
 </ul></nav>
 
 
 <div class="midter-div pink">
     <div id="smal-midterdiv" class="pink">
-        <br><h1>Save and share your wishing list</h1><br>
+        <h1>Welcome to Wishing Well</h1><br>
+        <br><h2 style="text-align:center;">Save and share your wishing list</h2><br>
         <div id="login-div">
             <br>
             <h2>Subscribe</h2><br>
             <form action="/mypage" method="post">
                 <label for="email">E-Mail:</label><br>
-                <input type="text" name="email" autofocus><br>
+                <input type="text" name="email" required maxlength="80" minlength="6" autofocus><br>
                 <label for="password">Password:</label><br>
-                <input type="password" name="password"><br>
+                <input type="password" name="password" required maxlength="50" minlength="8"><br>
                 <label for="name">Name:</label><br>
-                <input type="text" name="name"><br>
+                <input type="text" name="name"><br><br>
                 <button type="submit">Submit</button>
             </form>
             <br><h2> LOGIN </h2>
             <form action="/login" method="post">
                 <label for="email">E-Mail:</label><br>
-                <input type="text" name="email"><br>
+                <input type="text" name="email" required maxlength="60"><br>
                 <label for="password">Password:</label><br>
-                <input type="password" name="password"><br>
+                <input type="password" name="password" minlength="8" required><br><br>
                 <button type="submit">Submit</button>
-            </form>
+                </form>
             <br><br><br>
         </div>
     </div>
@@ -57,3 +58,5 @@
         33123456
     </p>
 </footer>
+</body>
+</html>

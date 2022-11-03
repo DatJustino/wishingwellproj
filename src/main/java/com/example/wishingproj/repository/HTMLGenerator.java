@@ -1,6 +1,7 @@
 package com.example.wishingproj.repository;
 
 import com.example.wishingproj.model.User;
+import org.springframework.ui.Model;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,9 +15,7 @@ import java.util.Locale;
 
 public class HTMLGenerator {
 
-  //getparameteremail.trim.remove@.remove.com
  public void GenerateFile(String getLogin) {
-   //getlogin == filename-- placeholder
    if (getLogin.toLowerCase(Locale.ROOT).length() > 1 & getLogin.toLowerCase(Locale.ROOT).length() < 30) {
 
      String email = getLogin.substring(0, getLogin.indexOf("@"))
@@ -26,69 +25,66 @@ public class HTMLGenerator {
          .trim();
 
 
+
      String indexpage = "<!DOCTYPE html>\n" +
-         "<html>\n" +
+         "<html lang=\"en\">\n" +
          "<head>\n" +
-         "\n" +
-         "<link rel=\"stylesheet\" href=\"index.css\">\n" +
-         "<meta name=\"description\" content=\"Wishing-list website\">\n" +
-         "<meta name=\"keywords\" content=\"wishing, share wishes, friends and family\">\n" +
-         "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
-         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-         "<meta name=\"author\"content=\"I. Justino, Veronica Bistrup Frydkjær\">\n" +
-         "<meta http-equiv=\"refresh\" content=\"1200\">\n" +
+         "    <link rel=\"stylesheet\" href=\"index.css\">\n" +
+         "    <meta name=\"description\" content=\"Wishing-list website\">\n" +
+         "    <meta name=\"keywords\" content=\"wishing, share wishes, friends and family\">\n" +
+         "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
+         "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+         "    <meta name=\"author\"content=\"I. Justino, Veronica Bistrup Frydkjær\">\n" +
+         "    <meta http-equiv=\"refresh\" content=\"1200\">\n" +
          "</head>\n" +
-         "  \n" +
          "<body>\n" +
          "<nav><ul class=\"morepink\">\n" +
-         "  <li><a href=\"/\"title=\"refresh the page?\">Main Menu</a></li>\n" +
-         "  <li><a href=\"PLACEHOLDER\"title=\"PLACEHOLDER\">Om Wishing Well</a></li>\n" +
-         "  <li><a href=\"PLACEHOLDER\"title=\"PLACEHOLDER\">PlaceHolder</a></li>\n" +
+         "    <li><a href=\"/\"title=\"refresh the page?\">Main Menu</a></li>\n" +
+         "    <li><a href=\"PLACEHOLDER\"title=\"PLACEHOLDER\">Inspiration</a></li>\n" +
+         "    <li><a href=\"PLACEHOLDER\"title=\"PLACEHOLDER\">Om os</a></li>\n" +
+         "   \n" +
+         "\n" +
          "</ul></nav>\n" +
-         "  \n" +
-         "  \n" +
+         "\n" +
+         "\n" +
          "<div class=\"midter-div pink\">\n" +
-         " <div id=\"smal-midterdiv\" class=\"pink\">\n" +
-         "    <br><h1>Save and share your wishing list</h1><br>\n" +
-         "  <div id=\"login-div\">\n" +
-         "    <br>\n" +
-
-         "<br>\n" + "<div class=\"midter-div pink\">  \n" +
-         "<div id=\"smal-midterdiv\" class=\"pink\">\n" +
-
+         "    <div id=\"smal-midterdiv\" class=\"pink\">\n" +
+         "   \n" +
+         "\n" +
+         "        <br><br><br>\n" +
          "<h2> My wishes </h2>\n" +
+         "        <table style=\"float:left\">\n" +
+         "            <tr  th:each=\"id : ${idList}\">\n" +
+         "                <td style=\"display:none\" th:text=\"${id}\">\n" +
+         "                </td>\n" +
+         "            </tr>\n" +
+         "        </table>\n" +
          "\n" +
-         "<table>\n" +
-         "    <tr th:each=\"description : ${descriptionList}\">\n" +
-         "        <td  th:text=\"${description}\"> </td>\n" +
-         "        <td  th:each=\"id : ${idList}\">  </td>\n" +
-         "        <td  th:text=\"${id}\">\n" +
-         "        <td th:each=\"id : ${idList}\"> <form action=\"/deletewish\" method=\"post\">\n" +
-         "                <input type=\"hidden\" name=\"email\" th:value=\"${email}\">\n" +
-         "                <input type=\"hidden\" name=\"wish_id\" th:value=\"${id}\">\n" +
-         "            <button type=\"submit\"> Delete </button>\n" +
-         "            </form>\n" +
-         "    </td></td>\n" +
-         "    </tr>\n" +
-         "</table>\n" +
+         "        <table  >\n" +
+         "            <tr  th:each=\"description : ${descriptionList}\">\n" +
+         "                <td class=\"tdsize\" th:text=\"${description}\"> </td>\n" +
+         "            </tr>\n" +
+         "        </table>\n" +
          "\n" +
+         "       <br><br><br>\n" +
          "\n" +
-         "\n" +
-         "\n" +
-         "</div>\n" +
-         "</div>\n" +
-         "\n" +
-         "\n" +
-         "<form action=\"/\" method=\"get\">\n" +
-         "    <button type=\"submit\"> HOME</button>\n" +
-         "</form>\n" +
-         "<br>\n" +
          "<form action=\"/"+email+"\" method=\"post\">\n" +
          " <input type=\"hidden\" name=\"email\" value=\""+getLogin+"\">\n" +
          " <button type=\"submit\"> getwishes! </button>\n" +
          "</form>\n" +
          "\n" +
          "\n" +
+         "</div>\n" +
+         "</div>\n" +
+         "\n" +
+         "<footer class=\"morepink\">\n" +
+         "    <p class=\"footer-text\">\n" +
+         "        Wishing Well DK<br>\n" +
+         "        Overgaden Oven Vandet 44, 1415 København<br>\n" +
+         "        wishinwell@justino.dk <br>\n" +
+         "        33123456\n" +
+         "    </p>\n" +
+         "</footer>\n" +
          "</body>\n" +
          "</html>";
 

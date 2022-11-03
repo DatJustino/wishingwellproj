@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WishingprojApplication {
 
   public static void main(String[] args) {
+
     SpringApplication.run(WishingprojApplication.class, args);
 
   }
