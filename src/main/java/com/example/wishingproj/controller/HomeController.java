@@ -31,23 +31,12 @@ public class HomeController {
       return "login";
     }
 
-    @PostMapping("/login")
-    public String getWishes(WebRequest userpayload, Model model) {
-      //if userexists get wishes
-      // else if user doesnt exist, return to indexpage with error message user doesnt exist.
+  /*@GetMapping("/justinoian")
+  public String JustinoIan(){
+    return "userprofiles/justinoian";
+  }*/
 
-      model.addAttribute("email", userpayload.getParameter("email"));
-      boolean hasEmail;
-      boolean password;
-      hasEmail = wishService.getAllWishesFromUser(userpayload, model);
-    //  password = userService.create();
-      if (hasEmail){
-        return "mypage";
-      } else return "index";
-      //første email er variabelnavn og andet email er email fra html formen
-      //den her model skal være der, da det er den, der sætter email ind i hidden form
-      //til brug i wishing_lidt. Uden den kommer email ikke ind i wishing_list
-    }
+
 
   //--skal ikke bruges endnu--
   @GetMapping("/omos")

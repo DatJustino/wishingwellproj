@@ -11,10 +11,11 @@ public class Wish {
       this.email = email;
     }
 
-    public Wish(int id, String description) {
+    public Wish(int id, String description, String email) {
       this.id = id;
       this.description = description;
-    }
+      this.email = email;
+  }
 
     public String getDescription() {
       return description;
@@ -41,10 +42,8 @@ public class Wish {
 
   @Override
   public String toString() {
-    return "Wish{" +
-        "description='" + description + '\'' +
-        ", email='" + email + '\'' +
-        '}';
+    return "Wish " + id + " description: " + description +
+        ", email: " + email;
   }
 }
 

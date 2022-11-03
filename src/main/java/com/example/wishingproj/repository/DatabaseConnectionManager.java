@@ -15,12 +15,12 @@ public class DatabaseConnectionManager {
         return conn;
       }
 
-      hostname = "jdbc:mysql://keasqlian.mysql.database.azure.com/wishing_well";
-      username = "justdon";
-      password = "Gagagaga123";
+      setHostname("jdbc:mysql://keasqlian.mysql.database.azure.com/wishing_well");
+      setUsername("justdon");
+      setPassword("Gagagaga123");
 
       try {
-        conn = DriverManager.getConnection(hostname, username, password);
+        conn = DriverManager.getConnection(getHostname(), getUsername(), getPassword());
       } catch (SQLException e) {
         System.out.println("no connection to DB");
         throw new RuntimeException(e);
@@ -30,6 +30,28 @@ public class DatabaseConnectionManager {
     }
 
 
-
+  public static String getUsername() {
+    return username;
   }
+
+  public static void setUsername(String username) {
+    DatabaseConnectionManager.username = username;
+  }
+
+  public static String getPassword() {
+    return password;
+  }
+
+  public static void setPassword(String password) {
+    DatabaseConnectionManager.password = password;
+  }
+
+  public static String getHostname() {
+    return hostname;
+  }
+
+  public static void setHostname(String hostname) {
+    DatabaseConnectionManager.hostname = hostname;
+  }
+}
 

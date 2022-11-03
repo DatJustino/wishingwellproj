@@ -29,7 +29,6 @@ public class WishService {
           wishpayload.getParameter("email")
       );
       wishRepository.create(wish);
-
     }
 
   public boolean getAllWishesFromUser(WebRequest loginpayload, Model model){;
@@ -44,6 +43,13 @@ public class WishService {
       return false;
     }
   }
+  public void deleteWish(WebRequest deleteWishPayload, Model model){
+      String wish_id = deleteWishPayload.getParameter("wish_id");
+    System.out.println(wish_id);
+      model.addAttribute(wish_id);
+      wishRepository.deleteWish(wish_id);
+  }
+
   }
 
 

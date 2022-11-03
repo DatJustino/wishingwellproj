@@ -1,6 +1,5 @@
 package com.example.wishingproj.repository;
 
-import com.example.wishingproj.model.User;
 import com.example.wishingproj.model.Wish;
 import org.springframework.ui.Model;
 
@@ -47,10 +46,26 @@ public class WishRepository {
 
         while(resultset.next()){
           wishes.add(new Wish(
+              resultset.getInt("wish_id"),
               resultset.getString("wish_description"),
               resultset.getString("email")));
         }
-        model.addAttribute("wishList", wishes); //----------
+        model.addAttribute("wishList", wishes); //----------------her sendes wishes til formen
+
+        ArrayList<Integer> IDs = new ArrayList<>();
+        ArrayList<String> descriptions = new ArrayList<>();
+        ArrayList<String> emails = new ArrayList<>();
+
+        for(Wish w : wishes) {
+          IDs.add(w.getId());
+          model.addAttribute("idList", IDs);
+
+          descriptions.add(w.getDescription());
+          model.addAttribute("descriptionList", descriptions);
+
+        }
+
+        //sout terminal
         for (Wish w:wishes) {
           System.out.println(w.toString());
         }
@@ -75,6 +90,7 @@ public class WishRepository {
           // og binde dem sammen via en join forbindelse
           while(resultset.next()){
             wishes.add(new Wish(
+                resultset.getInt("wish_id"),
                 resultset.getString("wish_description"),
                 resultset.getString("email")));
           }
@@ -120,8 +136,18 @@ public class WishRepository {
       } catch (SQLException e) {
         throw new RuntimeException(e);
       }
-
     }
 
+  public void deleteWish(String wish_id) {
+      int id = Integer.parseInt(wish_id);
+    try {
+      PreparedStatement psts = conn.prepareStatement("delete from wishing_well.wishing_list where wish_id=?");
+      psts.setInt(1, id);
+      psts.executeUpdate();
+
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
   }
 
